@@ -5,13 +5,13 @@ class User extends Model<InferAttributes<User> , InferCreationAttributes<User>>{
     declare id : CreationOptional<number>
     declare username : string
     declare password : string
-    declare profilePic : string
-    declare backProfilePic : string
+    declare profilePic? : string
+    declare backgroundProfilePic? : string
     declare email : string 
-    declare verifcation : boolean
-    declare verificationToken : string 
-    declare profileStatus : "public" | "private"
-    declare bio : string
+    declare verification? : boolean
+    declare verificationToken? : string 
+    declare profileStatus? : "public" | "private"
+    declare bio? : string
 }
 
 User.init({
@@ -20,13 +20,13 @@ User.init({
     password : {type : DataTypes.STRING , allowNull : false},
     email : {type : DataTypes.STRING , unique : true , allowNull : false},
     profilePic : {type : DataTypes.STRING , defaultValue : null},
-    backProfilePic : {type : DataTypes.STRING , defaultValue : null},
-    verifcation : {type : DataTypes.BOOLEAN , defaultValue : false},
+    backgroundProfilePic : {type : DataTypes.STRING , defaultValue : null},
+    verification : {type : DataTypes.BOOLEAN , defaultValue : false},
     verificationToken : {type : DataTypes.STRING , defaultValue : null},
     profileStatus : {type : DataTypes.ENUM("public" , "private") , defaultValue : "public"},
     bio :  {type : DataTypes.STRING  , defaultValue : null}
 },{
-    tableName : "user",
+    tableName : "User",
     sequelize : sequelize,
     timestamps : true
 })

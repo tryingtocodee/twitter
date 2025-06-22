@@ -11,6 +11,7 @@ Tweet.init({
     id : {type : DataTypes.INTEGER , primaryKey : true , autoIncrement : true},
     userId : {type : DataTypes.INTEGER , references : {model : "User" , key : "id"}},
     content : {type : DataTypes.STRING , validate : {len : [2 , 200]}}
+
 },{
     tableName : "Tweet",
     sequelize : sequelize,

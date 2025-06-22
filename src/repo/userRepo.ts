@@ -1,0 +1,26 @@
+import User from "../db/models/userModel";
+import { createUserDto } from "../dto/userDto";
+
+export async function createUserRepo(userDto : createUserDto){
+    try {
+       const user = await User.findOne({where : {email: userDto.email}}) 
+
+       if(user){
+        throw new Error("user with this username already exists ")
+       }
+
+       const newUser = await User.create({
+        username : userDto.username,
+        email : userDto.email,
+        bio : userDto.bio,
+        backgroundProfilePic : userDto.backProfilePic,
+        password : userDto.password,
+        profilePic : userDto.profilePic
+       })
+
+       return newUser;
+    } catch (e  : any) {
+        console.log("error in create user repo" , e.message)
+        throw Error(e)    
+    }
+}
