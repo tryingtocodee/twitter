@@ -6,3 +6,8 @@ export type createUserDto = {
     backProfilePic? : string
     bio? : string
 }
+
+export type loginUserDto = {
+    email : string
+    password : string
+}
