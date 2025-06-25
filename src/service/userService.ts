@@ -1,7 +1,9 @@
-import { createUserDto } from "../dto/userDto";
+import { createUserDto, loginUserDto } from "../dto/userDto";
 import b from "bcryptjs"
 import cloudinary from "../config/cloudinaryConfig";
-import { createUserRepo } from "../repo/userRepo";
+import { createUserRepo, loginUserRepo } from "../repo/userRepo";
+import { loginSchema } from "../validation/userValidation";
+import User from "../db/models/userModel";
 
 export async function createUserService(userDto : createUserDto){
     try {
@@ -30,4 +32,18 @@ export async function createUserService(userDto : createUserDto){
        console.log("error in create user service" , e.message)
        throw Error(e); 
     }
+}
+
+export async function loginService(userDto : loginUserDto){
+   try {
+      const user = await loginUserRepo(userDto)
+
+      if(!user){
+         throw new Error("failed to get user ")
+      }
+      return user
+   } catch (e : any) {
+     console.log("error in login user service " , e.message) 
+      throw Error(e)
+   }
 }

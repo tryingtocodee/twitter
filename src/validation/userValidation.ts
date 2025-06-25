@@ -8,3 +8,8 @@ export const createUserValidation = z.object({
     backProfilePic : z.string().optional(),
     bio : z.string().optional()
 })
+
+export const loginSchema = z.object({
+    email : z.string().email(),
+    password : z.string()
+})
